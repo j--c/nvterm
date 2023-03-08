@@ -12,7 +12,7 @@ end
 
 M.get_cmd_tbl = function()
     local cmd_tbl = {}
-    cmd_tbl['python unittest'] = '"python3 -m unittest\\n")'
+    cmd_tbl['python unittest'] = '"python3 -m unittest -v\\n")'
     return cmd_tbl
 end
 
