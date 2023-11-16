@@ -13,7 +13,7 @@ end
 M.get_cmd_tbl = function()
     local cmd_tbl = {}
     cmd_tbl['python unittest'] = '"python3 -m unittest -v\\n")'
-    cmd_tbl['start flaskapp'] = '"python3 start_flaskapp.py\n")'
+    cmd_tbl['start flaskapp'] = '"python3 start_flaskapp.py\\n")'
     cmd_tbl['behave'] = '"behave -v\\n")'
     return cmd_tbl
 end
