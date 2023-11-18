@@ -17,12 +17,13 @@ local get_cmd_txt = function(cmd, cmd_tbl)
     end
 end
 
-local M = {}
-M.cmd_tbl = {}
+local M = {
+    ['cmds'] = {}
+}
 
 M.add_cmd = function(key, cmd)
-    if(M.cmd_tbl[key] == nil) then
-        M.cmd_tbl[key] = cmd
+    if(M.cmds[key] == nil) then
+        M.cmds[key] = cmd
     end
 end
 
@@ -38,7 +39,7 @@ M.run = function(split, cmd)
         vim.cmd(term_txt)
     end
 
-    local cmd_txt = get_cmd_txt(cmd, M.cmd_tbl)
+    local cmd_txt = get_cmd_txt(cmd, M.cmds)
     if(cmd_txt ~= nil) then
         vim.cmd(cmd_txt)
     end
