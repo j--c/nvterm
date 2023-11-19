@@ -13,7 +13,7 @@ local get_cmd_txt = function(cmd, cmd_tbl)
     if(cmd_txt == nil) then
         return nil
     else
-        return ':call jobsend(b:terminal_job_id, ' .. cmd_txt .. '\\n\")' 
+        return ':call jobsend(b:terminal_job_id, "' .. cmd_txt .. '\\n\")' 
     end
 end
 
