@@ -10,9 +10,11 @@ end
 
 local get_cmd_txt = function(cmd, cmd_tbl, parms)
     local cmd_txt = ''
+
     if parms ~= nil then
+        cmd_txt = cmd_tbl[cmd]
         for _, v in ipairs(parms) do
-            cmd_txt = cmd_tbl[cmd] .. ' ' .. v
+            cmd_txt = cmd_txt .. ' ' .. v
         end
     else
         cmd_txt = cmd_tbl[cmd]
