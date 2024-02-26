@@ -14,6 +14,7 @@ local get_cmd_txt = function(cmd, cmd_tbl, parms)
     if parms ~= nil then
         cmd_txt = cmd_tbl[cmd]
         for _, v in ipairs(parms) do
+            print(v)
             cmd_txt = cmd_txt .. ' ' .. v
         end
     else
