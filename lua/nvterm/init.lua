@@ -58,17 +58,17 @@ M.run = function(split, cmd_idx)
     local term_txt = get_term_string(split)
     local cmd_string = get_cmd_string(M.cmd_tbl, cmd_idx)
     local param_string = get_param_string_from_cmd_tbl(M.cmd_tbl, cmd_idx)
-    if cmd_string ~= nil then
+    if cmd_string ~= '' then
         cmd_w_param_string = cmd_string
-        if param_string ~= nil then
+        if param_string ~= '' then
             cmd_w_param_string = cmd_string .. ' ' .. param_string
         end
     end
 
-    if(term_txt ~= nil) then
+    if(term_txt ~= '') then
         vim.cmd(term_txt)
     end
-    if cmd_w_param_string ~= nil then
+    if cmd_w_param_string ~= '' then
         --print(cmd_w_param_string)
         vim.cmd(':call jobsend(b:terminal_job_id, "' .. cmd_w_param_string .. '\\n\")')
     end
