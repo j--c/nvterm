@@ -50,7 +50,7 @@ M.run = function(split, cmd, parms)
 
     local cmd_txt = get_cmd_txt(cmd, M.cmds, parms)
     if(cmd_txt ~= nil) then
-        echo cmd_txt
+        print(cmd_txt)
         --vim.cmd(cmd_txt)
     end
 end
