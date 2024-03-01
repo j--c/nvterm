@@ -43,13 +43,16 @@ local get_cmd_string = function(cmd_tbl, cmd_idx)
     return cmd_string
 end
 
-
 local M = {
 }
 
 
-M.setup = function(cmd_tbl)
-    M.cmd_tbl = cmd_tbl
+M.setup = function()
+    local slash = package.config:sub(1, 1)
+    local home_dir = vim.loop.os_homedir()
+    local cmd_dir = home_dir .. slash.. '.nvterm'
+    package.path = package.path .. ";" .. cmd_dir .. slash ..'?.lua'
+    M.cmd_tbl = require('cmds')
 end
 
 
