@@ -43,16 +43,32 @@ local get_cmd_string = function(cmd_tbl, cmd_idx)
     return cmd_string
 end
 
+local get_os_slash = function()
+    return package.config:sub(1, 1)
+end
+
+local get_default_cmd_file = function()
+    return 'cmds'
+end
+
+local get_default_cmd_path = function()
+    return vim.loop.os_homedir() .. get_os_slash() .. '.nvterm'
+end
+
+
 local M = {
 }
 
 
-M.setup = function()
-    local slash = package.config:sub(1, 1)
-    local home_dir = vim.loop.os_homedir()
-    local cmd_dir = home_dir .. slash.. '.nvterm'
-    package.path = package.path .. ";" .. cmd_dir .. slash ..'?.lua'
-    M.cmd_tbl = require('cmds')
+M.setup = function(cmd_path, cmd_file)
+    if cmd_path == nil then
+        cmd_path = get_default_cmd_path()
+    end
+    package.path = package.path .. ";" .. cmd_path .. get_os_slash() ..'?.lua'
+    if cmd_file == nil then
+        cmd_file = get_default_cmd_file()
+    end
+    M.cmd_tbl = require(cmd_file)
 end
 
 
