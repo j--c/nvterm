@@ -1,4 +1,24 @@
-local get_param_string_from_file = function(paramfile)
+local get_os_slash = function()
+    return package.config:sub(1, 1)
+end
+
+
+local get_default_cmd_path = function()
+    return vim.loop.os_homedir() .. get_os_slash() .. '.nvterm'
+end
+
+
+local get_default_param_path = function()
+    return get_default_cmd_path()
+end
+
+local get_param_string_from_file = function(parampath, paramfile)
+    if parampath == 'default' then
+        paramfile = get_default_param_path() .. get_os_slash() .. paramfile
+    elseif parampath ~= nil then
+        paramfile = parampath .. get_os_slash() .. paramfile
+    end
+
     local file_param_string = ''
     local f = io.open(paramfile, 'r')
     if f then
@@ -14,7 +34,7 @@ local get_param_string_from_cmd_tbl = function(cmd_tbl, cmd_idx)
     for _, v in ipairs(cmd_tbl) do
         if v.index == cmd_idx then
             if v.paramfile ~= nil then
-                cmd_param_string = get_param_string_from_file(v.paramfile)
+                cmd_param_string = get_param_string_from_file(v.parampath, v.paramfile)
             end
         end
     end
@@ -43,19 +63,10 @@ local get_cmd_string = function(cmd_tbl, cmd_idx)
     return cmd_string
 end
 
-local get_os_slash = function()
-    return package.config:sub(1, 1)
-end
 
 local get_default_cmd_file = function()
     return 'cmds'
 end
-
-local get_default_cmd_path = function()
-    return vim.loop.os_homedir() .. get_os_slash() .. '.nvterm'
-end
-
-
 local M = {
 }
 
